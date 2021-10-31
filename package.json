@@ -1,0 +1,29 @@
+{
+  "name": "eco_quiz2",
+  "version": "1.0.0",
+  "description": "Quiz número 2 de ECO",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack --watch --progress",
+    "visualize-main": "webpack --analyze"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erika2201/ECO_Quiz2.git"
+  },
+  "author": "Erika Papamija",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erika2201/ECO_Quiz2/issues"
+  },
+  "homepage": "https://github.com/erika2201/ECO_Quiz2#readme",
+  "dependencies": {
+    "firebase": "^9.2.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1"
+  }
+}

@@ -1,0 +1,20 @@
+#title {
+    color:black;
+    font-family: Helvetica;
+    margin-left: 15px;
+} 
+
+#descriptiontask{
+    height: 25px;
+    width: 30%;
+    margin: 0px 5px 0px 16px;
+} 
+
+#addTaskBtn{
+    height: 30px;
+    width: 10%;
+    border-radius: 5px;
+    background-color:cornflowerblue;
+    border-color: cornflowerblue;
+    align-content: center;
+}
