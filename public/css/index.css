@@ -4,17 +4,21 @@
     margin-left: 15px;
 } 
 
-#descriptiontask{
+#inputs *{
+    display: flex;
+    flex-direction: column;
+
     height: 25px;
     width: 30%;
-    margin: 0px 5px 0px 16px;
+    margin: 0px 5px 5px 16px;
 } 
 
-#addTaskBtn{
+#addCourseBtn{
     height: 30px;
     width: 10%;
     border-radius: 5px;
     background-color:cornflowerblue;
     border-color: cornflowerblue;
     align-content: center;
+    margin-left: 16px;
 }

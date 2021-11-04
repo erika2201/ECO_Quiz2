@@ -10,41 +10,47 @@ const firebaseAppConfig = getFirebaseConfig();
 const firebaseApp = initializeApp(firebaseAppConfig);
 
 
-//REGISTRAR TAREA
+//Matricular
 //Metodo registrar tarea
-function taskRegister (task){
+function courseRegister (course){
     //Obtener base de datos
     const db = getDatabase();
-    const dbRef = ref(db, 'tasks/' + task.descriptiontask);
+    const dbRef = ref(db, 'courses/' + course.student + course.code + course.courseName);
 
-    set(dbRef, task);
+    set(dbRef, course);
 
 }
 
 //Instancias de los objetos
-const descriptiontask = document.getElementById("descriptiontask");
-const addTaskBtn = document.getElementById("addTaskBtn");
+const student = document.getElementById("student");
+const code = document.getElementById("code");
+const courseName = document.getElementById("courseName");
+const addCourseBtn = document.getElementById("addCourseBtn");
 
 
 //Metodo creación de tarea como un objeto
 const eventRegister = (e, event) =>{
     //Si los campos tienen algo
-    if(descriptiontask.value!=""){
+    if(student.value!="" || code.value!="" || courseName.value!="" ){
         //Cree el objeto, es lo que le envip al firebase
-        const task = {
-            descriptiontask: descriptiontask.value,
+        const course = {
+            student: student.value,
+            code: code.value,
+            courseName: courseName.value
         }
-        taskRegister(task);
-        descriptiontask.value='';
+        courseRegister(course);
+        student.value='';
+        code.value='';
+        courseName.value='';
     }else{
         //Sino avise que debe llenar los campos
-        alert("Ingresa una tarea");
+        alert("Ingresa todos los campos");
     }
 }
 
 
 //Clicks
-addTaskBtn.addEventListener('click', eventRegister);
+addCourseBtn.addEventListener('click', eventRegister);
 
 
 
