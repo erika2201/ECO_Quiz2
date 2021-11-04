@@ -1,0 +1,56 @@
+//Es como una clase que representa una tarjeta
+//Genera el HTML necesario para visulizar mis 
+import { getDatabase, ref, push } from 'firebase/database';
+
+export class courseCard {
+    constructor(course){
+        this.course = course;   //Atributos siempre con this
+    }
+
+    //metodo para que me devuelva HTML y generar tarjeta
+    render(){
+        let card = document.createElement("div");
+        card.className = "course-card";
+
+        //Aquí llega la matricula del usuario (el curso)
+        let course = document.createElement("p");
+        course.className = "course-text"
+        course.innerHTML = this.course.courseName;
+
+        //Aquí llega la matricula del usuario (el nombre)
+        let student = document.createElement("p");
+        student.className = "student-text"
+        student.innerHTML = this.course.student;
+
+        //Aquí llega la matricula del usuario (el código)
+        let code = document.createElement("p");
+        code.className = "code-text"
+        code.innerHTML = this.course.code;
+
+        //Sumar punticos
+        let addPointsBtn=document.createElement('button');
+        addPointsBtn.className = "addPointsBtn";
+        addPointsBtn.innerHTML = "+";
+
+        //Borrar tarjeta
+        let deleteBtn=document.createElement('button');
+        deleteBtn.className = "deleteBtn";
+        deleteBtn.innerHTML = "x";
+
+
+        //Botonsito para eliminar
+        deleteBtn.addEventListener("click", (e, ev)=>{
+            const db = getDatabase();
+            const courseRef = ref(db,'course/'+this.course.id);
+            set(courseRef, null);
+        });
+        
+        card.appendChild(course);
+        card.appendChild(student);
+        card.appendChild(code);
+
+        card.appendChild(deleteBtn);
+
+        return card;
+    }
+}

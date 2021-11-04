@@ -40,3 +40,20 @@
     text-align: center;
     color:white;
 }
+
+#cardList{
+    font-family: Helvetica;
+    margin: 10px 10px 0px 16px;
+    height: 100px;
+    width: 13%;
+    background-color: whitesmoke;
+}
+
+.course-text{
+    font-size: 12px;
+    color:gray;
+}
+
+.student-text, .code-text{
+    font-size: 16px;
+}

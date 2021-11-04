@@ -1,6 +1,7 @@
 
 import{initializeApp} from "firebase/app";
 import{getDatabase, ref, set, onValue, get, push} from "firebase/database";
+import { courseCard } from "./courseCard";
 
 import {getFirebaseConfig} from "./firebase-config";
 
@@ -15,10 +16,44 @@ const firebaseApp = initializeApp(firebaseAppConfig);
 function courseRegister (course){
     //Obtener base de datos
     const db = getDatabase();
-    const dbRef = ref(db, 'courses/' + course.student + course.code + course.courseName);
+    const newCourseRef = push (ref(db, 'courses'));
 
-    set(dbRef, course);
+    //creo el post en la posición id
+    //Inyectar el id
+    course["id"] = newCourseRef.key
+    set(newCourseRef, course);
+}
 
+//Obtener los cursos
+function getCourses(){
+    const db = getDatabase();
+    const dbRef =ref(db, 'courses');
+    
+    //Leer (algo parecido a un observer)
+    onValue(dbRef, (snapshot) =>{
+        const data = snapshot.val();
+        currentList(data);
+    });
+}
+
+//Aquí sucede la magia
+function currentList(info){
+    if(info){
+        cardList.innerHTML = "";
+
+        //Me da el arreglo de las llaves de un objeto
+        Object.keys(info).forEach((k,index)=>{
+            console.log(k, index);
+            //Crear objeto de la clase postCard
+            const card = new courseCard(info[k]);
+            cardList.appendChild(card.render());
+        });
+            
+    }else{
+        cardList.innerHTML = "No hay cursos matriculados";
+
+    }
+    
 }
 
 //Instancias de los objetos
@@ -27,9 +62,13 @@ const code = document.getElementById("code");
 const courseName = document.getElementById("courseName");
 const addCourseBtn = document.getElementById("addCourseBtn");
 
+const noBonus = document.getElementById("noBonus");
+const silverBonus = document.getElementById("silverBonus");
+const goldBonus = document.getElementById("goldBonus");
 
-//Metodo creación de tarea como un objeto
-const eventRegister = (e, event) =>{
+
+//Metodo creación de curso como un objeto
+const eventCourse = (e, event) =>{
     //Si los campos tienen algo
     if(student.value!="" || code.value!="" || courseName.value!="" ){
         //Cree el objeto, es lo que le envip al firebase
@@ -50,7 +89,7 @@ const eventRegister = (e, event) =>{
 
 
 //Clicks
-addCourseBtn.addEventListener('click', eventRegister);
-
+addCourseBtn.addEventListener('click', eventCourse);
+getCourses();
 
 
