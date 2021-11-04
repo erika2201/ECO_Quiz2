@@ -39,18 +39,23 @@ function getCourses(){
 //Aquí sucede la magia
 function currentList(info){
     if(info){
-        cardList.innerHTML = "";
-
         //Me da el arreglo de las llaves de un objeto
         Object.keys(info).forEach((k,index)=>{
             console.log(k, index);
-            //Crear objeto de la clase postCard
-            const card = new courseCard(info[k]);
-            cardList.appendChild(card.render());
+            //Crear objeto de la clase courseCard
+            const course = new courseCard(info[k]);
+           
+            //Recibo bella info y condicionales para pasar al otro nivel
+            if(info[k].points<=5){
+                noBonus.appendChild(course.render());
+            }else if(info[k].points>5 && info[k].bonus<=10){
+                silverBonus.appendChild(course.render());
+            }else if(info[k].points>10){
+                goldBonus.appendChild(course.render());
+            }
         });
             
     }else{
-        cardList.innerHTML = "No hay cursos matriculados";
 
     }
     
@@ -75,7 +80,8 @@ const eventCourse = (e, event) =>{
         const course = {
             student: student.value,
             code: code.value,
-            courseName: courseName.value
+            courseName: courseName.value,
+            points: 0
         }
         courseRegister(course);
         student.value='';

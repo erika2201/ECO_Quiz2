@@ -41,19 +41,42 @@
     color:white;
 }
 
-#cardList{
-    font-family: Helvetica;
-    margin: 10px 10px 0px 16px;
-    height: 100px;
-    width: 13%;
-    background-color: whitesmoke;
+.course-card{
+   background-color:whitesmoke;
+   position: absolute;
+   width:13%;
 }
 
 .course-text{
     font-size: 12px;
     color:gray;
+    text-align: left;
 }
 
-.student-text, .code-text{
+.student-text, .code-text, .points-text{
     font-size: 16px;
+    color:black;
+    text-align: left;
 }
+
+.deleteBtn{
+  background-color: red;
+  border-color: red;
+  border-radius: 2px;
+
+  position: absolute;
+  top:2px;
+  right: 2px;
+}
+
+.addPointsBtn{
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+    border-radius: 2px;
+    color:white;
+    width: 50%;
+
+    position: absolute;
+    top: 112px;
+    right: 2px;
+  }

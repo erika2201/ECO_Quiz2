@@ -1,6 +1,6 @@
 //Es como una clase que representa una tarjeta
 //Genera el HTML necesario para visulizar mis 
-import { getDatabase, ref, push } from 'firebase/database';
+import { getDatabase, ref, push, set } from 'firebase/database';
 
 export class courseCard {
     constructor(course){
@@ -27,6 +27,10 @@ export class courseCard {
         code.className = "code-text"
         code.innerHTML = this.course.code;
 
+        let points= document.createElement('h4');
+        points.className="points-text";
+        points.innerHTML = this.course.points;
+
         //Sumar punticos
         let addPointsBtn=document.createElement('button');
         addPointsBtn.className = "addPointsBtn";
@@ -37,19 +41,32 @@ export class courseCard {
         deleteBtn.className = "deleteBtn";
         deleteBtn.innerHTML = "x";
 
-
         //Botonsito para eliminar
         deleteBtn.addEventListener("click", (e, ev)=>{
+            //alert("me voy");
             const db = getDatabase();
-            const courseRef = ref(db,'course/'+this.course.id);
+            const courseRef = ref(db,'courses/'+this.course.id);
+            //console.log(courseRef);
             set(courseRef, null);
         });
+
+        //Botonsito para sumar puntos
+        addPointsBtn.addEventListener ("click", (e, ev)=>{
+            //alert("me voy");
+            const db = getDatabase();
+            const courseRef = ref(db,'courses/'+this.course.id+ '/points' );
+            set(courseRef, this.course.points+1);
+        });
+
+       
         
         card.appendChild(course);
         card.appendChild(student);
         card.appendChild(code);
+        card.appendChild(points);
 
         card.appendChild(deleteBtn);
+        card.appendChild(addPointsBtn);
 
         return card;
     }
