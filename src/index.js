@@ -1,9 +1,9 @@
 
 import{initializeApp} from "firebase/app";
 import{getDatabase, ref, set, onValue, get, push} from "firebase/database";
-import { courseCard } from "./courseCard";
 
 import {getFirebaseConfig} from "./firebase-config";
+import { courseCard } from "./courseCard";
 
 
 //Inicializar firebase
@@ -20,7 +20,7 @@ function courseRegister (course){
 
     //creo el post en la posición id
     //Inyectar el id
-    course["id"] = newCourseRef.key
+    course["id"] = newCourseRef.key;
     set(newCourseRef, course);
 }
 
@@ -42,7 +42,7 @@ function currentList(info){
         //Todo esto sirve para pasar las tarjetas entre sì
         noBonus.innerHTML = "";
         let sinBono=document.createElement("h2");
-        sinBono.innerHTML="Sin Bono"
+        sinBono.innerHTML="Sin bono"
         noBonus.appendChild(sinBono);
 
         silverBonus.innerHTML="";
@@ -72,28 +72,32 @@ function currentList(info){
         });
             
     }else{
+        //Texticos importantes, aquì en serio sucede la magiaaa
         let regNoBonus=document.createElement("p");
-        regNoBonus.innerHTML="";
+        regNoBonus.innerHTML="Vacio";
         let regBonusPlata=document.createElement("p");
-        regBonusPlata.innerHTML="";
+        regBonusPlata.innerHTML="Vacio";
         let regBonusOro=document.createElement("p");
-        regBonusOro.innerHTML="";
+        regBonusOro.innerHTML="Vacio";
 
         noBonus.innerHTML="";
+        let sinBono=document.createElement("h2");
+        sinBono.innerHTML="Sin bono"
         noBonus.appendChild(sinBono);
         noBonus.appendChild(regNoBonus);
 
-
         silverBonus.innerHTML="";
+        let bonoPlata=document.createElement("h2");
+        bonoPlata.innerHTML="Bono plata +0,3"
         silverBonus.appendChild(bonoPlata);
         silverBonus.appendChild(regBonusPlata);
 
         goldBonus.innerHTML="";
+        let bonoOro=document.createElement("h2");
+        bonoOro.innerHTML="Bono oro +0,5";
         goldBonus.appendChild(bonoOro);
         goldBonus.appendChild(regBonusOro);
-
     }
-    
 }
 
 //Instancias de los objetos
