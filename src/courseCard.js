@@ -31,15 +31,15 @@ export class courseCard {
         points.className="points-text";
         points.innerHTML = this.course.points;
 
+         //Borrar tarjeta
+         let deleteBtn=document.createElement('button');
+         deleteBtn.className = "deleteBtn";
+         deleteBtn.innerHTML = "x";
+
         //Sumar punticos
         let addPointsBtn=document.createElement('button');
         addPointsBtn.className = "addPointsBtn";
         addPointsBtn.innerHTML = "+";
-
-        //Borrar tarjeta
-        let deleteBtn=document.createElement('button');
-        deleteBtn.className = "deleteBtn";
-        deleteBtn.innerHTML = "x";
 
         //Botonsito para eliminar
         deleteBtn.addEventListener("click", (e, ev)=>{
@@ -64,8 +64,8 @@ export class courseCard {
         card.appendChild(code);
         card.appendChild(points);
 
-        card.appendChild(deleteBtn);
         card.appendChild(addPointsBtn);
+        card.appendChild(deleteBtn);
 
         return card;
     }
