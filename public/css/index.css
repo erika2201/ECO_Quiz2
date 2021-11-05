@@ -24,14 +24,14 @@
     color: white;
 }
 
-#bonusCards {
+#bonusCards{
     display: flex;
-    flex-direction: row;
+    flex-direction: row wrap;
     font-family: Helvetica;
     margin: 50px 10px 0px 16px;
 }
 
-#noBonus, #silverBonus, #goldBonus{
+.card{
     background-color: cornflowerblue;
     border-radius: 5px;
     height: 60px;
@@ -45,6 +45,7 @@
    background-color:whitesmoke;
    position: absolute;
    width:13%;
+   padding-left: 5px;
 }
 
 .course-text{

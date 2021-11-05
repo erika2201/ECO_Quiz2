@@ -53,7 +53,7 @@ export class courseCard {
         //Botonsito para sumar puntos
         addPointsBtn.addEventListener ("click", (e, ev)=>{
             const db = getDatabase();
-            const courseRef = ref(db,'courses/'+this.course.id+ '/points' );
+            const courseRef = ref(db,'courses/'+this.course.id+ '/points');
             set(courseRef, this.course.points+1);
         });
 
